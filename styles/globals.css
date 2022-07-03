@@ -4,6 +4,6 @@
 
 @layer base {
   html {
-    @apply font-default text-slate-900 bg-white;
+    @apply scroll-smooth bg-white font-default text-slate-900;
   }
 }
