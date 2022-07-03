@@ -8,6 +8,7 @@ import {
   SunIconOutline,
 } from './IconOutline';
 import {
+  ChevronRightIconSolid,
   ClipboardListIconSolid,
   FireIconSolid,
   HomeIconSolid,
@@ -16,12 +17,19 @@ import {
   SunIconSolid,
 } from './IconSolid';
 
-const Icons = ({ icon, type = 'outline', color = 'default' }: IconsProps) => {
-  const style = classNames("'h-6 w-6 stroke-[1.5px]", {
+const Icons = ({
+  icon,
+  type = 'outline',
+  color = 'default',
+  size = 'default',
+}: IconsProps) => {
+  const style = classNames('stroke-[1.5px]', {
     'stroke-slate-900': type === 'outline' && color === 'default',
     'fill-slate-900': type === 'solid' && color === 'default',
     'stroke-blue-500': type === 'outline' && color === 'primary',
     'fill-blue-500': type === 'solid' && color === 'primary',
+    'h-6 w-6': size === 'default',
+    'h-3 w-3': size === 'smallest',
   });
 
   if (type === 'outline') {
@@ -55,6 +63,8 @@ const Icons = ({ icon, type = 'outline', color = 'default' }: IconsProps) => {
         return <FireIconSolid className={style} />;
       case 'genres':
         return <ClipboardListIconSolid className={style} />;
+      case 'chevron':
+        return <ChevronRightIconSolid className={style} />;
       default:
         return <span>😢</span>;
     }
