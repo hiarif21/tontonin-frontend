@@ -12,9 +12,19 @@ const Layout = ({ children, title }: LayoutProps) => {
   return (
     <div>
       <Head>
+        <meta
+          name="theme-color"
+          content="#fff"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#0F172A"
+          media="(prefers-color-scheme: dark)"
+        />
         <title>{title}</title>
       </Head>
-      <header>
+      <header className="sticky top-0 z-10 bg-white">
         <div
           className={classNames('', {
             'flex items-center justify-between border-b border-slate-100 p-5':
@@ -28,6 +38,7 @@ const Layout = ({ children, title }: LayoutProps) => {
         </div>
       </header>
       <main>{children}</main>
+      <footer className="pt-[105px]"></footer>
     </div>
   );
 };
