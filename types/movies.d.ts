@@ -1,4 +1,4 @@
-interface DataMovie {
+interface MovieData {
     _id: string
     title: string
     image: string
@@ -10,10 +10,15 @@ interface DataMovie {
         _id: string
         title: string
         link_streaming: string
+        streaming_service: { _id: string, name: string }
     }[]
     persons: [] | {
         _id: string
         name: string
+        role: {
+            _id: string
+            name: string
+        }
     }[]
     genres: [] | {
         _id: string
@@ -27,7 +32,7 @@ interface GetMoviesResponse {
     page: number
     total_page: number
     total_data: number
-    data: DataMovie[] | []
+    data: MovieData[] | []
 }
 
 interface GetMovieResponse {
@@ -36,7 +41,7 @@ interface GetMovieResponse {
     page: number
     total_page: number
     total_movies: number
-    data: DataMovie
+    data: MovieData
 }
 
 interface MoviesParams {
@@ -49,8 +54,8 @@ type GetMovie = (id: string, params?: MoviesParams, signal?: AbortSignal | undef
 type LoadMoreMovies = () => void
 
 type UseMovies = () => {
-    data: DataMovie[],
-    setData: Dispatch<DataMovie[]>,
+    data: MovieData[],
+    setData: Dispatch<MovieData[]>,
     totalData: number,
     setTotalData: Dispatch<number>,
     loadMore: LoadMoreMovies

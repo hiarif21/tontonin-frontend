@@ -1,7 +1,7 @@
-interface DataDiscover {
+interface DiscoverData {
     _id: string
     title: string
-    movies: { _id: string, title: string, image: string }[]
+    movies: MovieData[]
 }
 
 interface GetDiscoversResponse {
@@ -10,7 +10,7 @@ interface GetDiscoversResponse {
     page: number
     total_page: number
     total_data: number
-    data: DataDiscover[] | []
+    data: DiscoverData[] | []
 }
 
 interface GetDiscoverResponse {
@@ -19,7 +19,7 @@ interface GetDiscoverResponse {
     page: number
     total_page: number
     total_movies: number
-    data: DataDiscover
+    data: DiscoverData
 }
 
 interface DiscoversParams {
@@ -32,8 +32,8 @@ type GetDiscover = (id: string, params?: DiscoversParams, signal?: AbortSignal |
 type LoadMoreDiscovers = () => void
 
 type UseDiscovers = () => {
-    data: DataDiscover[],
-    setData: Dispatch<DataDiscover[]>,
+    data: DiscoverData[],
+    setData: Dispatch<DiscoverData[]>,
     totalData: number,
     setTotalData: Dispatch<number>,
     loadMore: LoadMoreDiscovers

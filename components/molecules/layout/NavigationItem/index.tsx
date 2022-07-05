@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { NavigationItemProps } from '../../../../types/layout';
 import Icons from '../../../atoms/Icons';
 
 const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
@@ -9,7 +8,8 @@ const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
     'flex flex-col items-center gap-1 text-xs w-full rounded-xl hover:bg-slate-100 p-[10px]';
 
   const handleClick = () => {
-    type === 'home' ? router.push('/') : router.push('/' + type);
+    const url = type === 'home' ? '/' : '/' + type;
+    router.push(url, undefined, { shallow: true });
   };
 
   return (

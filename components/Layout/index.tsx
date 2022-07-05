@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { LayoutProps } from '../../types/layout';
 import Logo from '../molecules/commons/Logo';
 import ToggleTheme from '../molecules/commons/ToggleTheme';
 import Navigation from '../organisms/layout/Navigation';

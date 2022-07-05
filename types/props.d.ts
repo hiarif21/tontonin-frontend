@@ -6,9 +6,9 @@ interface LayoutProps {
 // atoms
 
 interface IconsProps {
-    icon: TypeGenres | "chevron" | "refresh"
+    icon: TypeGenres | "chevron" | "refresh" | "close" | "mute" | "unmute"
     type?: "outline" | "solid"
-    color?: "default" | "primary"
+    color?: "default" | "primary" | "light"
     size?: "default" | "smallest"
 }
 
@@ -20,9 +20,9 @@ interface NavigationItemProps {
 }
 
 interface MovieCardProps {
-    data: { _id: string, title: string, image: string }
+    data: MovieData
     imagePriority?: boolean
-    height?: number
+    className?: string
 }
 
 interface InfiniteScrollingProps {
