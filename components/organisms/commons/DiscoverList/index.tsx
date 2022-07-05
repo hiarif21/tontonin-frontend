@@ -1,12 +1,9 @@
 import Link from 'next/link';
-import { useDiscovers } from '../../../../context/discovers';
 import Icons from '../../../atoms/Icons';
 import InfiniteScrolling from '../../../molecules/commons/InfiniteScrolling';
 import MovieCard from '../../../molecules/commons/MovieCard';
 
-const DiscoverList = () => {
-  const { data, totalData, loadMore } = useDiscovers();
-
+const DiscoverList = ({ data, totalData, loadMore }: DiscoverListProps) => {
   return (
     <div className="flex flex-col gap-5">
       {data.map((val, idx) => {

@@ -1,14 +1,11 @@
-import { useMovies } from '../../../../context/movies';
 import InfiniteScrolling from '../../../molecules/commons/InfiniteScrolling';
 import MovieCard from '../../../molecules/commons/MovieCard';
 
-const MovieList = () => {
-  const { data, totalData, loadMore } = useMovies();
-
+const MovieList = ({ data, totalData, loadMore, title }: MovieListProps) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <span className="text-center font-bold">More For You</span>
+        <span className="text-center font-bold">{title}</span>
         <div className="grid grid-cols-2 gap-2">
           {data.map((val, idx) => {
             return (
