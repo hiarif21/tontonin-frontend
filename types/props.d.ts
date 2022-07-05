@@ -8,8 +8,8 @@ interface LayoutProps {
 interface IconsProps {
     icon: TypeGenres | "chevron" | "refresh" | "close" | "mute" | "unmute"
     type?: "outline" | "solid"
-    color?: "default" | "primary" | "light"
-    size?: "default" | "smallest"
+    color?: "default" | "primary" | "light" | "secondary"
+    size?: "default" | 'small' | "smallest"
 }
 
 // molecules
@@ -32,6 +32,18 @@ interface InfiniteScrollingProps {
 }
 
 // organisms
+interface MovieListProps {
+    data: MovieData[]
+    totalData: number
+    loadMore: () => void
+    title: string
+}
+
+interface DiscoverListProps {
+    data: DiscoverData[]
+    totalData: number
+    loadMore: () => void
+}
 
 // template
 

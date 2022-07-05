@@ -47,11 +47,18 @@ interface GetMovieResponse {
 interface MoviesParams {
     page?: number
     title?: string
+    watch_options?: string
+    persons?: string
+    genres?: string
 }
 
 type GetMovies = (params?: MoviesParams, signal?: AbortSignal | undefined) => Promise<GetMoviesResponse>
 type GetMovie = (id: string, params?: MoviesParams, signal?: AbortSignal | undefined) => Promise<GetMovieResponse>
+
+type LoadFilteredDataMovies = (signal?: AbortSignal | undefined) => Promise<GetMoviesResponse>
 type LoadMoreMovies = () => void
+type LoadMoreFilteredMovies = () => void
+
 
 type UseMovies = () => {
     data: MovieData[],
@@ -59,4 +66,16 @@ type UseMovies = () => {
     totalData: number,
     setTotalData: Dispatch<number>,
     loadMore: LoadMoreMovies
+    filteredData: MovieData[],
+    filteredTotalData: number,
+    loadMoreFiltered: LoadMoreFilteredMovies
+    filter: FilterMovies
+    setFilter: Dispatch<FilterMovies>,
+}
+
+interface FilterMovies {
+    title?: string
+    watch_options?: string
+    persons?: string
+    genres?: string
 }
