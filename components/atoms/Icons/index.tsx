@@ -31,9 +31,12 @@ const Icons = ({
     'fill-slate-900': type === 'solid' && color === 'default',
     'stroke-blue-500': type === 'outline' && color === 'primary',
     'fill-blue-500': type === 'solid' && color === 'primary',
+    'stroke-slate-500': type === 'outline' && color === 'secondary',
+    'fill-slate-500': type === 'solid' && color === 'secondary',
     'stroke-slate-300': type === 'outline' && color === 'light',
     'fill-slate-300': type === 'solid' && color === 'light',
     'h-6 w-6': size === 'default',
+    'h-4 w-4': size === 'small',
     'h-3 w-3': size === 'smallest',
   });
 
