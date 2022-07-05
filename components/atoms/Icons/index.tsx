@@ -15,6 +15,9 @@ import {
   SearchIconSolid,
   StarIconSolid,
   SunIconSolid,
+  VolumeOffIconSolid,
+  VolumeUpIconSolid,
+  XIconSolid,
 } from './IconSolid';
 
 const Icons = ({
@@ -28,6 +31,8 @@ const Icons = ({
     'fill-slate-900': type === 'solid' && color === 'default',
     'stroke-blue-500': type === 'outline' && color === 'primary',
     'fill-blue-500': type === 'solid' && color === 'primary',
+    'stroke-slate-300': type === 'outline' && color === 'light',
+    'fill-slate-300': type === 'solid' && color === 'light',
     'h-6 w-6': size === 'default',
     'h-3 w-3': size === 'smallest',
   });
@@ -65,6 +70,12 @@ const Icons = ({
         return <ClipboardListIconSolid className={style} />;
       case 'chevron':
         return <ChevronRightIconSolid className={style} />;
+      case 'close':
+        return <XIconSolid className={style} />;
+      case 'mute':
+        return <VolumeOffIconSolid className={style} />;
+      case 'unmute':
+        return <VolumeUpIconSolid className={style} />;
       default:
         return <span>😢</span>;
     }
