@@ -67,6 +67,8 @@ const MovieDetail = () => {
         setData(result.data);
       })();
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [v]);
 
   if (data === undefined) {

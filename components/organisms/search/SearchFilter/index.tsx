@@ -9,6 +9,8 @@ const SearchFilter = () => {
   useEffect(() => {
     setFilter(initialFilterMovies);
     ref.current && ref.current.focus();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

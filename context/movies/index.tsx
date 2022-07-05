@@ -42,6 +42,8 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
     return () => {
       abortController.abort();
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   const loadFilteredData: LoadFilteredDataMovies = async (
