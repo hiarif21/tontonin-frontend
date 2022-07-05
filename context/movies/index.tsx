@@ -4,7 +4,7 @@ import { getMovies } from '../../services/api/movies.service';
 const Context = createContext({});
 
 export const MoviesProvider = (props: { children: ReactNode }) => {
-  const [data, setData] = useState<DataMovie[]>([]);
+  const [data, setData] = useState<MovieData[]>([]);
   const [totalData, setTotalData] = useState(0);
 
   const loadMore: LoadMoreMovies = async () => {
