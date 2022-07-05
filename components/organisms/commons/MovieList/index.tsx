@@ -5,8 +5,6 @@ import MovieCard from '../../../molecules/commons/MovieCard';
 const MovieList = () => {
   const { data, totalData, loadMore } = useMovies();
 
-  console.log(data);
-
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">

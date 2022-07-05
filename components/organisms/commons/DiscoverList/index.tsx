@@ -16,7 +16,7 @@ const DiscoverList = () => {
               <span className="font-bold">{val.title}</span>
               <Link href={'/'} passHref>
                 <a className="flex items-center gap-1 text-xs text-blue-500">
-                  Explore All{' '}
+                  Explore All
                   <Icons
                     icon="chevron"
                     type="solid"
@@ -26,14 +26,14 @@ const DiscoverList = () => {
                 </a>
               </Link>
             </div>
-            <div className="flex gap-2 overflow-auto">
+            <div className="overflow-auto whitespace-nowrap scrollbar-hide">
               {val.movies.map((val, idx) => {
                 return (
                   <MovieCard
                     key={idx}
                     data={val}
                     imagePriority={idx < 4 ? true : false}
-                    height={90}
+                    className="mr-2 h-[90px]"
                   />
                 );
               })}
