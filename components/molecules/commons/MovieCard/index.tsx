@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useId, useState } from 'react';
 import ReactPlayer from 'react-player';
+import { useMovies } from '../../../../context/movies';
 import Icons from '../../../atoms/Icons';
 
 const MovieCard = ({
@@ -10,7 +11,6 @@ const MovieCard = ({
   className,
 }: MovieCardProps) => {
   const router = useRouter();
-
   const { unq } = router.query;
 
   useEffect(() => {
@@ -22,14 +22,14 @@ const MovieCard = ({
   }, [unq]);
 
   const uniqueId = useId();
-  const params = new URLSearchParams({ unq: uniqueId }).toString();
+  const params = new URLSearchParams({ unq: uniqueId, v: data._id }).toString();
 
   const handleClick = () => {
     router.push('?' + params, undefined, { shallow: true });
   };
 
   if (unq === uniqueId) {
-    return <MovieDetail data={data} />;
+    return <MovieDetail />;
   }
 
   return (
@@ -51,10 +51,31 @@ const MovieCard = ({
   );
 };
 
-const MovieDetail = ({ data }: { data: MovieData }) => {
+const MovieDetail = () => {
   const router = useRouter();
+  const { v } = router.query;
 
+  const [data, setData] = useState<MovieData>();
   const [mute, setMute] = useState(true);
+
+  const { getData } = useMovies();
+
+  useEffect(() => {
+    if (v) {
+      (async () => {
+        const result = await getData(v.toString());
+        setData(result.data);
+      })();
+    }
+  }, [v]);
+
+  if (data === undefined) {
+    return (
+      <div className="fixed top-0 left-0 z-10 flex h-screen w-screen flex-col items-center justify-center overflow-y-auto bg-white">
+        <span className="animate-pulse">🧐 Wait...</span>
+      </div>
+    );
+  }
 
   let aboutMovie: any = {};
 

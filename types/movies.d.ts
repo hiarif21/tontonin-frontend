@@ -26,13 +26,19 @@ interface MovieData {
     }[]
 }
 
+interface MoviesData {
+    _id: string
+    title: string
+    image: string
+}
+
 interface GetMoviesResponse {
     success: boolean,
     message: string,
     page: number
     total_page: number
     total_data: number
-    data: MovieData[] | []
+    data: MoviesData[] | []
 }
 
 interface GetMovieResponse {
@@ -53,11 +59,12 @@ interface MoviesParams {
 }
 
 type GetMovies = (params?: MoviesParams, signal?: AbortSignal | undefined) => Promise<GetMoviesResponse>
-type GetMovie = (id: string, params?: MoviesParams, signal?: AbortSignal | undefined) => Promise<GetMovieResponse>
+type GetMovie = (id: string) => Promise<GetMovieResponse>
 
 type LoadFilteredDataMovies = (signal?: AbortSignal | undefined) => Promise<GetMoviesResponse>
 type LoadMoreMovies = () => void
 type LoadMoreFilteredMovies = () => void
+type GetMovie = (id: string) => Promise<GetMovieResponse>
 
 
 type UseMovies = () => {
@@ -71,6 +78,7 @@ type UseMovies = () => {
     loadMoreFiltered: LoadMoreFilteredMovies
     filter: FilterMovies
     setFilter: Dispatch<FilterMovies>,
+    getData: GetMovie
 }
 
 interface FilterMovies {

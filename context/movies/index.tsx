@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { getMovies } from '../../services/api/movies.service';
+import { getMovie, getMovies } from '../../services/api/movies.service';
 
 const Context = createContext({});
 
@@ -17,10 +17,10 @@ export const initialFilterMovies = {
 };
 
 export const MoviesProvider = (props: { children: ReactNode }) => {
-  const [data, setData] = useState<MovieData[]>([]);
+  const [data, setData] = useState<MoviesData[]>([]);
   const [totalData, setTotalData] = useState(0);
 
-  const [filteredData, setFilteredData] = useState<MovieData[]>([]);
+  const [filteredData, setFilteredData] = useState<MoviesData[]>([]);
   const [filteredTotalData, setFilteredTotalData] = useState(0);
 
   const [filter, setFilter] = useState<FilterMovies>(initialFilterMovies);
@@ -54,6 +54,11 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
       setFilteredTotalData(result.total_data);
     }
 
+    return result;
+  };
+
+  const getData: GetMovie = async (id) => {
+    const result = await getMovie(id);
     return result;
   };
 
@@ -93,6 +98,7 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
     loadMoreFiltered,
     filter,
     setFilter,
+    getData,
   };
 
   return <Context.Provider value={store}>{props.children}</Context.Provider>;

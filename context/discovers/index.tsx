@@ -16,8 +16,6 @@ export const DiscoversProvider = (props: { children: ReactNode }) => {
   const loadMore: LoadMoreDiscovers = async () => {
     let count = Math.floor(data.length / 10 + 1);
 
-    console.log(count);
-
     if (data.length < totalData) {
       const result = await getDiscovers({
         page: count,

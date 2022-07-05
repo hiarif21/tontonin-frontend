@@ -1,7 +1,11 @@
 interface DiscoverData {
     _id: string
     title: string
-    movies: MovieData[]
+    movies: {
+        _id: string
+        title: string
+        image: string
+    }[] | []
 }
 
 interface GetDiscoversResponse {

@@ -20,7 +20,7 @@ interface NavigationItemProps {
 }
 
 interface MovieCardProps {
-    data: MovieData
+    data: MoviesData
     imagePriority?: boolean
     className?: string
 }

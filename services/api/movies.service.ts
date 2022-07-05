@@ -8,9 +8,7 @@ export const getMovies: GetMovies = ({ page = 1, title = '' } = {}, signal = und
 
     return fetchData({ method: "GET", path: `${path + "?" + params}`, signal })
 }
-export const getMovie: GetMovie = (id, { page = 1 } = {}, signal = undefined) => {
+export const getMovie: GetMovie = (id) => {
 
-    let params = new URLSearchParams({ page: page.toString() }).toString()
-
-    return fetchData({ method: "GET", path: `${path}/${id + "?" + params}`, signal })
+    return fetchData({ method: "GET", path: `${path}/${id}` })
 }
