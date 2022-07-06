@@ -88,3 +88,8 @@ interface DiscoversDetailProps {
     data: DiscoverData
     totalData: number
 }
+
+interface BrowseProps {
+    data: MoviesData[]
+    totalData: number
+}
