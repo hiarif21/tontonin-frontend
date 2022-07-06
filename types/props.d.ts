@@ -31,6 +31,10 @@ interface InfiniteScrollingProps {
     markFinished?: boolean
 }
 
+interface GenreProps {
+    data: GenreData
+}
+
 // organisms
 interface MovieListProps {
     data: MovieData[]
@@ -46,6 +50,10 @@ interface DiscoverListProps {
 }
 
 // template
+
+interface GenresTemplate {
+    data: GenreData[]
+}
 
 // pages
 
@@ -64,4 +72,8 @@ interface PopularProps {
 interface NewProps {
     data: MoviesData[]
     totalData: number
+}
+
+interface GenresProps {
+    data: GenreData[]
 }
