@@ -1,11 +1,7 @@
 interface DiscoverData {
     _id: string
     title: string
-    movies: {
-        _id: string
-        title: string
-        image: string
-    }[] | []
+    movies: MoviesData[] | []
 }
 
 interface GetDiscoversResponse {
@@ -38,18 +34,24 @@ type GetDiscover = (id: string, params?: DiscoversParams, signal?: AbortSignal |
 type LoadMoreDiscovers = () => void
 type GetMoreDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined, type: TypeMoreDiscovers) => Promise<GetDiscoversResponse>
 type LoadMoreDiscoversDiscovers = (type: TypeMoreDiscovers) => void
+type LoadMoreDiscover = (id: string) => void
 
 type UseDiscovers = () => {
     data: DiscoverData[],
-    setData: Dispatch<DiscoverData[]>,
+    setData: React.Dispatch<DiscoverData[]>,
     totalData: number,
-    setTotalData: Dispatch<number>,
+    setTotalData: React.Dispatch<number>,
     loadMore: LoadMoreDiscovers
     loadMoreDiscovers: LoadMoreDiscoversDiscovers
     moreDiscoversData: MoreDiscoversData
-    setMoreDiscoversData: Dispatch<MoreDiscoversData>
-    totalMoreDiscoversData: TotalMoreDiscoversData // just numbe
-    setTotalMoreDiscoversData: Dispatch<TotalMoreDiscoversData>
+    setMoreDiscoversData: React.Dispatch<MoreDiscoversData>
+    totalMoreDiscoversData: TotalMoreDiscoversData
+    setTotalMoreDiscoversData: React.Dispatch<TotalMoreDiscoversData>
+    singleData: DiscoverData
+    setSingleData: React.Dispatch<DiscoverData>
+    totalSingleData: number
+    setTotalSingleData: React.Dispatch<number>
+    loadMoreDiscover: LoadMoreDiscover
 }
 
 interface MoreDiscoversData {

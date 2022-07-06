@@ -68,12 +68,12 @@ type GetMovie = (id: string) => Promise<GetMovieResponse>
 
 
 type UseMovies = () => {
-    data: MovieData[],
-    setData: Dispatch<MovieData[]>,
+    data: MoviesData[],
+    setData: Dispatch<MoviesData[]>,
     totalData: number,
     setTotalData: Dispatch<number>,
     loadMore: LoadMoreMovies
-    filteredData: MovieData[],
+    filteredData: MoviesData[],
     filteredTotalData: number,
     loadMoreFiltered: LoadMoreFilteredMovies
     filter: FilterMovies

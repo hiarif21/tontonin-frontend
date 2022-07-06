@@ -6,7 +6,7 @@ interface LayoutProps {
 // atoms
 
 interface IconsProps {
-    icon: TypeGenres | "chevron" | "refresh" | "close" | "mute" | "unmute"
+    icon: TypeGenres | "chevron" | "refresh" | "close" | "mute" | "unmute" | "back"
     type?: "outline" | "solid"
     color?: "default" | "primary" | "light" | "secondary"
     size?: "default" | 'small' | "smallest"
@@ -15,8 +15,7 @@ interface IconsProps {
 interface ModalProps {
     children: React.ReactNode
     show?: boolean
-    onClickOutside?: () => void
-    _ref: React.RefObject<HTMLDivElement>
+    onClickOutside: () => void
 }
 
 // molecules
@@ -44,10 +43,10 @@ interface GenreProps {
 
 // organisms
 interface MovieListProps {
-    data: MovieData[]
+    data: MoviesData[]
     totalData: number
     loadMore: () => void
-    title: string
+    title?: string
 }
 
 interface DiscoverListProps {
@@ -83,4 +82,9 @@ interface NewProps {
 
 interface GenresProps {
     data: GenreData[]
+}
+
+interface DiscoversDetailProps {
+    data: DiscoverData
+    totalData: number
 }
