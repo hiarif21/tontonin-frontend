@@ -11,7 +11,11 @@ const InfiniteScrolling = ({
   useInfinite(ref, loadMore);
 
   if (finished) {
-    return markFinished ? <span className="atext-xs">🙄 No More!</span> : null;
+    return markFinished ? (
+      <span ref={ref} className="atext-xs">
+        🙄 No More!
+      </span>
+    ) : null;
   }
 
   return (
