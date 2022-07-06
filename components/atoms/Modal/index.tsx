@@ -4,11 +4,17 @@ import { useOnClickOutside } from 'usehooks-ts';
 const Modal = ({ children, show, onClickOutside }: ModalProps) => {
   const ref = useRef(null);
 
-  useOnClickOutside(ref, onClickOutside);
+  useOnClickOutside(ref, (e) => {
+    if (e.button === 0) {
+      onClickOutside();
+    }
+  });
 
   if (!show) {
     return null;
   }
+
+  document.body.style.overflow = 'hidden';
 
   return (
     <>
