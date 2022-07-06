@@ -31,9 +31,13 @@ interface DiscoversParams {
     title?: string
 }
 
+type TypeMoreDiscovers = "popular" | "new"
+
 type GetDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined) => Promise<GetDiscoversResponse>
 type GetDiscover = (id: string, params?: DiscoversParams, signal?: AbortSignal | undefined) => Promise<GetDiscoverResponse>
 type LoadMoreDiscovers = () => void
+type GetMoreDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined, type: TypeMoreDiscovers) => Promise<GetDiscoversResponse>
+type LoadMoreDiscoversDiscovers = (type: TypeMoreDiscovers) => void
 
 type UseDiscovers = () => {
     data: DiscoverData[],
@@ -41,4 +45,19 @@ type UseDiscovers = () => {
     totalData: number,
     setTotalData: Dispatch<number>,
     loadMore: LoadMoreDiscovers
+    loadMoreDiscovers: LoadMoreDiscoversDiscovers
+    moreDiscoversData: MoreDiscoversData
+    setMoreDiscoversData: Dispatch<MoreDiscoversData>
+    totalMoreDiscoversData: TotalMoreDiscoversData // just numbe
+    setTotalMoreDiscoversData: Dispatch<TotalMoreDiscoversData>
+}
+
+interface MoreDiscoversData {
+    popular: MovieData[]
+    new: MovieData[]
+}
+
+interface TotalMoreDiscoversData {
+    popular: number
+    new: number
 }

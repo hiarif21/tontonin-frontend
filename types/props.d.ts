@@ -55,3 +55,8 @@ interface HomeProps {
     dataMovies: DataMovie[]
     totalDataMovies: number
 }
+
+interface PopularProps {
+    data: DataMovie[]
+    totalData: number
+}
