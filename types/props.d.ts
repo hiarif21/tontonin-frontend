@@ -50,13 +50,18 @@ interface DiscoverListProps {
 // pages
 
 interface HomeProps {
-    dataDiscovers: DataDiscover[]
+    dataDiscovers: DiscoverData[]
     totalDataDiscovers: number
-    dataMovies: DataMovie[]
+    dataMovies: MoviesData[]
     totalDataMovies: number
 }
 
 interface PopularProps {
-    data: DataMovie[]
+    data: MoviesData[]
+    totalData: number
+}
+
+interface NewProps {
+    data: MoviesData[]
     totalData: number
 }
