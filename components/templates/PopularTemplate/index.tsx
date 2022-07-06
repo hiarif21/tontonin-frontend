@@ -20,7 +20,6 @@ const PopularTemplate = () => {
           totalData={totalData}
         />
       </div>
-      ;
     </Layout>
   );
 };

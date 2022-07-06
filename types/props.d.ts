@@ -12,6 +12,13 @@ interface IconsProps {
     size?: "default" | 'small' | "smallest"
 }
 
+interface ModalProps {
+    children: React.ReactNode
+    show?: boolean
+    onClickOutside?: () => void
+    _ref: React.RefObject<HTMLDivElement>
+}
+
 // molecules
 
 interface NavigationItemProps {

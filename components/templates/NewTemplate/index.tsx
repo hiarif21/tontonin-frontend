@@ -20,7 +20,6 @@ const NewTemplate = () => {
           totalData={totalData}
         />
       </div>
-      ;
     </Layout>
   );
 };
