@@ -11,7 +11,7 @@ const DiscoverList = ({ data, totalData, loadMore }: DiscoverListProps) => {
           <div key={idx} className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <span className="font-bold">{val.title}</span>
-              <Link href={'/'} passHref>
+              <Link href={'/discover?dd=' + val._id} passHref>
                 <a className="flex items-center gap-1 text-xs text-blue-500">
                   Explore All
                   <Icons

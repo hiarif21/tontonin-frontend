@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const MovieCard = ({
   data,
@@ -9,8 +10,20 @@ const MovieCard = ({
 }: MovieCardProps) => {
   const router = useRouter();
 
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    if (Object.keys(router.query).length === 0) {
+      setUrl(router.pathname + '?v=' + data._id);
+    } else {
+      setUrl(router.asPath + '&v=' + data._id);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query]);
+
   const handleClick = () => {
-    router.push('?v=' + data._id, undefined, { shallow: true });
+    router.push(url, undefined, { shallow: true });
   };
 
   return (

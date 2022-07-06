@@ -8,6 +8,7 @@ import {
   SunIconOutline,
 } from './IconOutline';
 import {
+  ChevronLeftIconSolid,
   ChevronRightIconSolid,
   ClipboardListIconSolid,
   FireIconSolid,
@@ -79,6 +80,8 @@ const Icons = ({
         return <VolumeOffIconSolid className={style} />;
       case 'unmute':
         return <VolumeUpIconSolid className={style} />;
+      case 'back':
+        return <ChevronLeftIconSolid className={style} />;
       default:
         return <span>😢</span>;
     }

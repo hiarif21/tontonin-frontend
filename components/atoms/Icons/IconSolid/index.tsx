@@ -9,6 +9,7 @@ import {
   XIcon,
   VolumeUpIcon,
   VolumeOffIcon,
+  ChevronLeftIcon,
 } from '@heroicons/react/solid';
 
 export const FireIconSolid = FireIcon;
@@ -21,3 +22,4 @@ export const ChevronRightIconSolid = ChevronRightIcon;
 export const XIconSolid = XIcon;
 export const VolumeUpIconSolid = VolumeUpIcon;
 export const VolumeOffIconSolid = VolumeOffIcon;
+export const ChevronLeftIconSolid = ChevronLeftIcon;

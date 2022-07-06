@@ -15,7 +15,7 @@ const MovieDetails = () => {
   const { getData } = useMovies();
 
   const handleClose = () => {
-    router.push(router.pathname, undefined, { shallow: true });
+    router.back();
   };
 
   useEffect(() => {

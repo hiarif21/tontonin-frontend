@@ -1,11 +1,6 @@
+import { createContext, ReactNode, useContext, useState } from 'react';
 import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-import {
+  getDiscover,
   getDiscovers,
   getMoreDiscovers,
 } from '../../services/api/discovers.service';
@@ -20,11 +15,20 @@ const initialTotalMoreDiscovers: TotalMoreDiscoversData = {
   new: 0,
 };
 
+const initialSingleData: DiscoverData = {
+  _id: '',
+  title: '',
+  movies: [],
+};
+
 const Context = createContext({});
 
 export const DiscoversProvider = (props: { children: ReactNode }) => {
   const [data, setData] = useState<DiscoverData[]>([]);
   const [totalData, setTotalData] = useState(0);
+
+  const [singleData, setSingleData] = useState<DiscoverData>(initialSingleData);
+  const [totalSingleData, setTotalSingleData] = useState(0);
 
   const [moreDiscoversData, setMoreDiscoversData] =
     useState<MoreDiscoversData>(initialMoreDiscovers);
@@ -66,6 +70,21 @@ export const DiscoversProvider = (props: { children: ReactNode }) => {
     }
   };
 
+  const loadMoreDiscover: LoadMoreDiscover = async (id: string) => {
+    let count = Math.floor(singleData!.movies.length / 10 + 1);
+
+    if (singleData!.movies.length < totalSingleData) {
+      const result = await getDiscover(id, {
+        page: count,
+      });
+      setSingleData({
+        ...singleData!,
+        movies: [...singleData!.movies, ...result.data!.movies],
+      });
+      setTotalSingleData(result.total_movies);
+    }
+  };
+
   const store = {
     data,
     setData,
@@ -77,6 +96,11 @@ export const DiscoversProvider = (props: { children: ReactNode }) => {
     setMoreDiscoversData,
     totalMoreDiscoversData,
     setTotalMoreDiscoversData,
+    singleData,
+    setSingleData,
+    totalSingleData,
+    setTotalSingleData,
+    loadMoreDiscover,
   };
 
   return <Context.Provider value={store}>{props.children}</Context.Provider>;
