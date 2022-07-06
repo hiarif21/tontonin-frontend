@@ -101,6 +101,8 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
     filter,
     setFilter,
     getData,
+    setFilteredData,
+    setFilteredTotalData,
   };
 
   return <Context.Provider value={store}>{props.children}</Context.Provider>;

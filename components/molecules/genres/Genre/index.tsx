@@ -1,8 +1,13 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Genre = ({ data }: GenreProps) => {
+  const router = useRouter();
+  const params = new URLSearchParams({ gr: data._id, tl: data.name });
   return (
-    <button className="flex w-full items-center gap-5 rounded-xl bg-slate-50 p-5">
+    <button
+      onClick={() => router.push('/browse?' + params)}
+      className="flex w-full items-center gap-5 rounded-xl bg-slate-50 p-5 hover:bg-slate-100">
       <div className="relative h-5 w-5">
         <Image
           src={'/icons/' + data.name.toLocaleLowerCase() + '.png'}

@@ -9,7 +9,7 @@ const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
 
   const handleClick = () => {
     const url = type === 'home' ? '/' : '/' + type;
-    router.push(url, undefined, { shallow: true });
+    router.push(url, undefined, { shallow: true, scroll: false });
   };
 
   return (

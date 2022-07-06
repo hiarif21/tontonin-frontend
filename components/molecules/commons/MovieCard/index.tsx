@@ -20,10 +20,11 @@ const MovieCard = ({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query]);
+  }, [router.query, data._id]);
 
   const handleClick = () => {
-    router.push(url, undefined, { shallow: true });
+    console.log(router.query);
+    router.push(url, undefined, { scroll: false });
   };
 
   return (
