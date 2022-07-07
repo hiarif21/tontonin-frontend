@@ -36,8 +36,7 @@ const Layout = ({ children, title }: LayoutProps) => {
           </div>
         </div>
       </header>
-      <main>{children}</main>
-      <footer className="pt-[105px]"></footer>
+      <main className="mb-[105px]">{children}</main>
     </div>
   );
 };
