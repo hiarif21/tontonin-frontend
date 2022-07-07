@@ -11,6 +11,8 @@ const Browse = ({ data, totalData }: BrowseProps) => {
 
   const { setFilteredData, setFilteredTotalData, setFilter } = useMovies();
   useEffect(() => {
+    if (!gr && !pr) router.push('/');
+
     setFilteredData(data);
     setFilteredTotalData(totalData);
     setFilter({
@@ -19,13 +21,7 @@ const Browse = ({ data, totalData }: BrowseProps) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (!gr && !pr) router.push('/');
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.dd]);
+  }, [gr, pr]);
 
   return <BrowseTemplate />;
 };

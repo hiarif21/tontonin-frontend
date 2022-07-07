@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
@@ -40,27 +41,16 @@ const MovieDetails = () => {
     );
   }
 
-  let aboutMovie: any = {};
+  let persons: any = {};
 
   data.persons.forEach((value) => {
-    if (Object.keys(aboutMovie).find((val) => val === value.role.name)) {
-      aboutMovie = {
-        ...aboutMovie,
-        [value.role.name]: [...aboutMovie[value.role.name], value.name],
+    if (Object.keys(persons).find((val) => val === value.role.name)) {
+      persons = {
+        ...persons,
+        [value.role.name]: [...persons[value.role.name], value],
       };
     } else {
-      aboutMovie = { ...aboutMovie, [value.role.name]: [value.name] };
-    }
-  });
-
-  data.genres.forEach((value) => {
-    if (aboutMovie.Genres) {
-      aboutMovie = {
-        ...aboutMovie,
-        Genres: [...aboutMovie.Genres, value.name],
-      };
-    } else {
-      aboutMovie = { ...aboutMovie, Genres: [value.name] };
+      persons = { ...persons, [value.role.name]: [value] };
     }
   });
 
@@ -68,9 +58,9 @@ const MovieDetails = () => {
     <Modal onClickOutside={handleClose} show>
       <div className="w-screen bg-white">
         {/* header */}
-        <div className="sticky top-0 left-0 z-20 flex justify-end bg-white p-5">
+        <div className="sticky top-0 left-0 z-20 flex justify-start bg-white p-5">
           <button onClick={handleClose}>
-            <Icons icon="close" type="solid" />
+            <Icons icon="back" type="solid" />
           </button>
         </div>
 
@@ -120,24 +110,52 @@ const MovieDetails = () => {
           <div className="flex flex-col gap-5">
             <h3 className="text-center font-bold">About Movie</h3>
             <div className="flex flex-col gap-2 whitespace-normal rounded bg-slate-50 p-5 text-sm">
-              {Object.keys(aboutMovie).map((value, index) => {
+              {Object.keys(persons).map((value, index) => {
                 return (
                   <div key={index}>
                     <span className="font-bold">{value}: </span>
-                    {aboutMovie[value].map((val: any, idx: KeyType) => {
-                      return (
-                        <span
-                          key={val + idx}
-                          className={
-                            "after:content-[',_'] last:after:content-['']"
-                          }>
-                          {val}
-                        </span>
-                      );
-                    })}
+                    {persons[value].map(
+                      (val: { _id: string; name: string }, idx: any) => {
+                        const paramsBrowse = new URLSearchParams({
+                          pr: val._id,
+                          tl: val.name,
+                        });
+                        return (
+                          <button
+                            onClick={() =>
+                              router.push('browse?' + paramsBrowse)
+                            }
+                            key={val._id + idx}
+                            className={
+                              "ml-1 after:content-[','] last:after:content-[''] hover:underline"
+                            }>
+                            {val.name}
+                          </button>
+                        );
+                      }
+                    )}
                   </div>
                 );
               })}
+              <div>
+                <span className="font-bold">Genres: </span>
+                {data.genres.map((val, idx) => {
+                  const paramsBrowse = new URLSearchParams({
+                    gr: val._id,
+                    tl: val.name,
+                  });
+                  return (
+                    <button
+                      onClick={() => router.push('browse?' + paramsBrowse)}
+                      key={val._id + idx}
+                      className={
+                        "ml-1 after:content-[','] last:after:content-[''] hover:underline"
+                      }>
+                      {val.name}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -157,7 +175,7 @@ const MovieDetails = () => {
                   <a
                     key={idx}
                     href={val.link_streaming}
-                    className="flex items-center gap-2 rounded bg-slate-50 p-5 hover:bg-slate-100">
+                    className="flex items-center gap-2 rounded-xl bg-slate-50 p-5 hover:bg-slate-100">
                     {icon}
                     {val.streaming_service.name}
                   </a>
