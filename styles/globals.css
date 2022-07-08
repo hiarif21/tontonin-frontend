@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply scroll-smooth bg-white font-default text-slate-900;
+  body {
+    @apply scroll-smooth bg-white font-default text-slate-900 dark:bg-slate-900 dark:text-slate-100;
   }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }

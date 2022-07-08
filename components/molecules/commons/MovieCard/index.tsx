@@ -32,7 +32,7 @@ const MovieCard = ({
       <div
         onClick={handleClick}
         className={classNames(
-          'relative inline-block aspect-video cursor-pointer bg-slate-100',
+          'relative inline-block aspect-video cursor-pointer rounded-lg bg-slate-100 dark:bg-slate-800',
           { [`${className}`]: className }
         )}>
         <Image
@@ -40,7 +40,7 @@ const MovieCard = ({
           alt={data.title}
           layout="fill"
           priority={imagePriority}
-          className={'rounded-md'}
+          className={'rounded-lg'}
         />
       </div>
     </>

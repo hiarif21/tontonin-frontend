@@ -12,13 +12,11 @@ const PopularTemplate = () => {
 
   return (
     <Layout title="Most Popular">
+      <div className="sticky top-0 z-10 items-center gap-5 bg-white p-5 dark:bg-slate-900">
+        <h1 className="col-span-3 text-center font-bold">Most Popular</h1>
+      </div>
       <div className="p-5">
-        <MovieList
-          data={data}
-          title="Most Popular"
-          loadMore={loadMore}
-          totalData={totalData}
-        />
+        <MovieList data={data} loadMore={loadMore} totalData={totalData} />
       </div>
     </Layout>
   );

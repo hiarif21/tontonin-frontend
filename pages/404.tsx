@@ -10,7 +10,7 @@ const ErrorPage = () => {
       </div>
       <button
         onClick={() => router.push('/')}
-        className="rounded-xl bg-blue-500 px-8 py-4 text-white">
+        className="rounded-lg bg-blue-500 px-8 py-4 text-white">
         Go to Home
       </button>
     </div>

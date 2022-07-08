@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useMovies } from '../../../../context/movies';
+import { useTheme } from '../../../../context/theme';
 import Icons from '../../../atoms/Icons';
 import Modal from '../../../atoms/Modal';
 
@@ -14,6 +15,7 @@ const MovieDetails = () => {
   const [mute, setMute] = useState(true);
 
   const { getData } = useMovies();
+  const { isDarkTheme } = useTheme();
 
   const handleClose = () => {
     router.back();
@@ -56,11 +58,15 @@ const MovieDetails = () => {
 
   return (
     <Modal onClickOutside={handleClose} show>
-      <div className="w-screen bg-white">
+      <div className=" bg-white pb-5 dark:bg-slate-900">
         {/* header */}
-        <div className="sticky top-0 left-0 z-20 flex justify-start bg-white p-5">
+        <div className="sticky top-0 left-0 z-20 flex justify-start bg-white p-5 dark:bg-slate-900">
           <button onClick={handleClose}>
-            <Icons icon="back" type="solid" />
+            <Icons
+              icon="back"
+              type="solid"
+              color={isDarkTheme ? 'light' : 'default'}
+            />
           </button>
         </div>
 
@@ -71,7 +77,7 @@ const MovieDetails = () => {
             <h2 className="text-lg font-bold">{data.title}</h2>
             <div className="flex items-center gap-2 text-xs">
               <span>{data.release_year}</span>
-              <span className="h-[2px] w-[2px] rounded-full bg-slate-900"></span>
+              <span className="h-[2px] w-[2px] rounded-full bg-slate-900 dark:bg-slate-100"></span>
               <span>{data.runtime} minutes</span>
             </div>
           </div>
@@ -101,7 +107,7 @@ const MovieDetails = () => {
           {/* storyline */}
           <div className="flex flex-col gap-5">
             <h3 className="text-center font-bold">Storyline</h3>
-            <p className="whitespace-normal rounded bg-slate-50 p-5 text-sm">
+            <p className="darkb whitespace-normal rounded-lg bg-slate-50 p-5 text-sm dark:bg-slate-800">
               {data.storyline}
             </p>
           </div>
@@ -109,7 +115,7 @@ const MovieDetails = () => {
           {/* about movie */}
           <div className="flex flex-col gap-5">
             <h3 className="text-center font-bold">About Movie</h3>
-            <div className="flex flex-col gap-2 whitespace-normal rounded bg-slate-50 p-5 text-sm">
+            <div className="flex flex-col gap-2 whitespace-normal rounded-lg bg-slate-50 p-5 text-sm dark:bg-slate-800">
               {Object.keys(persons).map((value, index) => {
                 return (
                   <div key={index}>
@@ -175,7 +181,7 @@ const MovieDetails = () => {
                   <a
                     key={idx}
                     href={val.link_streaming}
-                    className="flex items-center gap-2 rounded-xl bg-slate-50 p-5 hover:bg-slate-100">
+                    className="flex items-center gap-2 rounded-lg bg-slate-50 px-5 py-3 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700">
                     {icon}
                     {val.streaming_service.name}
                   </a>

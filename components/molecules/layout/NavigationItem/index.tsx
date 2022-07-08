@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
+import { useTheme } from '../../../../context/theme';
 import Icons from '../../../atoms/Icons';
 
 const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
   const router = useRouter();
 
-  const style =
-    'flex flex-col items-center gap-1 text-xs w-full rounded-xl hover:bg-slate-100 p-[10px]';
+  const { isDarkTheme } = useTheme();
 
   const handleClick = () => {
     const url = type === 'home' ? '/' : '/' + type;
@@ -13,10 +13,22 @@ const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
   };
 
   return (
-    <button onClick={handleClick} className={style}>
+    <button
+      onClick={handleClick}
+      className={
+        'flex w-full flex-col items-center gap-1 rounded-xl p-[10px] text-xs hover:bg-slate-100 dark:hover:bg-slate-800'
+      }>
       <Icons
         icon={type}
-        color={active ? 'primary' : 'default'}
+        color={
+          active
+            ? isDarkTheme
+              ? 'light'
+              : 'primary'
+            : isDarkTheme
+            ? 'light'
+            : 'default'
+        }
         type={active ? 'solid' : 'outline'}
       />
       <span className="capitalize">{type}</span>

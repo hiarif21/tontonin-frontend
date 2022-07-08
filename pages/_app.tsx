@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import MovieDetails from '../components/molecules/commons/MovieDetails';
 import { DiscoversProvider } from '../context/discovers';
 import { MoviesProvider } from '../context/movies';
+import { ThemeProvider } from '../context/theme';
 import useScrollRestoration from '../hooks/useScrollRestoration';
 import '../styles/globals.css';
 
@@ -11,12 +12,14 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   } catch (error) {}
   useScrollRestoration(router);
   return (
-    <MoviesProvider>
-      <DiscoversProvider>
-        <Component {...pageProps} />
-        <MovieDetails />
-      </DiscoversProvider>
-    </MoviesProvider>
+    <ThemeProvider>
+      <MoviesProvider>
+        <DiscoversProvider>
+          <Component {...pageProps} />
+          <MovieDetails />
+        </DiscoversProvider>
+      </MoviesProvider>
+    </ThemeProvider>
   );
 }
 

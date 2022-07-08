@@ -21,7 +21,7 @@ const Modal = ({ children, show, onClickOutside }: ModalProps) => {
       <div className="fixed inset-0 z-10 h-screen w-screen bg-slate-900/20 backdrop-blur-sm"></div>
       <div
         ref={ref}
-        className="fixed top-0 left-0 z-20 max-h-screen overflow-y-auto bg-white">
+        className="fixed top-0 left-0 z-20 max-h-screen overflow-y-auto bg-white dark:bg-slate-900">
         {children}
       </div>
     </>

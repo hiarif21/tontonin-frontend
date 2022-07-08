@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useTheme } from '../../../../context/theme';
 import Icons from '../../../atoms/Icons';
 
 const ToggleTheme = () => {
-  const [active, setActive] = useState(false);
+  const { isDarkTheme, toggleTheme } = useTheme();
+
+  const type = isDarkTheme ? 'solid' : 'outline';
+  const color = isDarkTheme ? 'light' : 'default';
+
   return (
-    <button onClick={() => setActive(!active)}>
-      {active ? (
-        <Icons icon="theme" type="solid" />
-      ) : (
-        <Icons icon="theme" type="outline" />
-      )}
+    <button onClick={toggleTheme}>
+      <Icons icon="theme" type={type} color={color} />
     </button>
   );
 };

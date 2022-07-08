@@ -7,7 +7,7 @@ const Genre = ({ data }: GenreProps) => {
   return (
     <button
       onClick={() => router.push('/browse?' + params)}
-      className="flex w-full items-center gap-5 rounded-xl bg-slate-50 p-5 hover:bg-slate-100">
+      className="flex w-full items-center gap-5 rounded-lg bg-slate-50 p-5 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700">
       <div className="relative h-5 w-5">
         <Image
           src={'/icons/' + data.name.toLocaleLowerCase() + '.png'}

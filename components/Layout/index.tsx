@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useTheme } from '../../context/theme';
 import Logo from '../molecules/commons/Logo';
 import ToggleTheme from '../molecules/commons/ToggleTheme';
 import Navigation from '../organisms/layout/Navigation';
@@ -8,26 +9,18 @@ import Navigation from '../organisms/layout/Navigation';
 const Layout = ({ children, title }: LayoutProps) => {
   const router = useRouter();
 
+  const { isDarkTheme } = useTheme();
+
   return (
     <div>
       <Head>
-        <meta
-          name="theme-color"
-          content="#fff"
-          media="(prefers-color-scheme: light)"
-        />
-        <meta
-          name="theme-color"
-          content="#0F172A"
-          media="(prefers-color-scheme: dark)"
-        />
+        <meta name="theme-color" content={isDarkTheme ? '#0F172A' : '#FFF'} />
         <title>{title}</title>
       </Head>
-      <header className="sticky top-0 z-10 bg-white">
+      <header className="sticky top-0 z-10 bg-white dark:bg-slate-900">
         <div
           className={classNames('', {
-            'flex items-center justify-between border-b border-slate-100 p-5':
-              router.pathname === '/',
+            'flex items-center justify-between p-5 ': router.pathname === '/',
           })}>
           {router.pathname === '/' && <Logo />}
           <div className="flex items-center">

@@ -8,8 +8,10 @@ const SearchTemplate = () => {
     useMovies();
   return (
     <Layout title="Search">
-      <div className="flex flex-col gap-5 p-5">
+      <div className="sticky top-0 z-10 items-center gap-5 bg-white p-5 dark:bg-slate-900">
         <SearchFilter />
+      </div>
+      <div className="flex flex-col gap-5 p-5 pt-0">
         {Boolean(filter.title) && (
           <MovieList
             data={filteredData}
