@@ -8,3 +8,5 @@ interface GetGenresResponse {
     message: string,
     data: [] | GenreData[]
 }
+
+type GetGenres = () => Promise<GetGenresResponse>
