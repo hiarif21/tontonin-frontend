@@ -10,7 +10,7 @@ const HomeTemplate = () => {
 
   return (
     <Layout title="Home">
-      <div className="p-5 pt-0">
+      <div className="p-5 pt-0 lg:p-5">
         <DiscoverList
           data={Discovers.data}
           totalData={Discovers.totalData}

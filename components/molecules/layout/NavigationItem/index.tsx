@@ -16,7 +16,7 @@ const NavigationItem = ({ type, active = false }: NavigationItemProps) => {
     <button
       onClick={handleClick}
       className={
-        'flex w-full flex-col items-center gap-1 rounded-xl p-[10px] text-xs hover:bg-slate-100 dark:hover:bg-slate-800'
+        'flex w-full flex-col items-center gap-1 rounded-xl p-[10px] text-xs hover:bg-slate-100 dark:hover:bg-slate-800 lg:flex-row lg:gap-2 lg:text-sm'
       }>
       <Icons
         icon={type}

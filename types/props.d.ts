@@ -16,6 +16,7 @@ interface ModalProps {
     children: React.ReactNode
     show?: boolean
     onClickOutside: () => void
+    _ref?: RefObject<HTMLElement>;
 }
 
 // molecules

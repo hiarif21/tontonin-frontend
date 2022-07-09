@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import PopularTemplate from '../../components/templates/PopularTemplate';
 import { useDiscovers } from '../../context/discovers';

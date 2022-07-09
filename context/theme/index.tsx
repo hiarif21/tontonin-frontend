@@ -34,8 +34,6 @@ export const ThemeProvider = (props: { children: ReactNode }) => {
     }
   }, [isDarkTheme]);
 
-  console.log(isDarkTheme);
-
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
     localStorage.setItem('dark_theme', JSON.stringify(!isDarkTheme));

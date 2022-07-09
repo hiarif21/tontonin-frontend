@@ -12,10 +12,12 @@ const NewTemplate = () => {
 
   return (
     <Layout title="New Release">
-      <div className="sticky top-0 z-10 items-center gap-5 bg-white p-5 dark:bg-slate-900">
-        <h1 className="col-span-3 text-center font-bold">New Release</h1>
+      <div className="sticky top-0 z-10 items-center gap-5 bg-white p-5 dark:bg-slate-900 lg:static">
+        <h1 className="col-span-3 text-center font-bold sm:text-lg lg:text-xl">
+          New Release
+        </h1>
       </div>
-      <div className="p-5">
+      <div className="p-5 pt-0 lg:p-5">
         <MovieList data={data} loadMore={loadMore} totalData={totalData} />
       </div>
     </Layout>

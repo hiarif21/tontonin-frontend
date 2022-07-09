@@ -55,8 +55,8 @@ type UseDiscovers = () => {
 }
 
 interface MoreDiscoversData {
-    popular: MovieData[]
-    new: MovieData[]
+    popular: MoviesData[]
+    new: MoviesData[]
 }
 
 interface TotalMoreDiscoversData {

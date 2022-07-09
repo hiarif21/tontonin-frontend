@@ -21,13 +21,22 @@ const SearchFilter = () => {
   };
 
   return (
-    <label className="flex w-full items-center gap-2 rounded-lg bg-slate-50 p-5 text-sm dark:bg-slate-800">
-      <Icons
-        icon="search"
-        type="solid"
-        color={isDarkTheme ? 'light' : 'secondary'}
-        size="small"
-      />
+    <label className="flex w-full items-center gap-2 rounded-lg bg-slate-50 p-5 text-sm dark:bg-slate-800 sm:text-base">
+      <div className="hidden sm:flex">
+        <Icons
+          icon="search"
+          type="solid"
+          color={isDarkTheme ? 'light' : 'secondary'}
+        />
+      </div>
+      <div className="flex sm:hidden">
+        <Icons
+          icon="search"
+          type="solid"
+          color={isDarkTheme ? 'light' : 'secondary'}
+          size="small"
+        />
+      </div>
       <input
         ref={ref}
         type="text"

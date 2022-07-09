@@ -4,13 +4,8 @@ import Link from 'next/link';
 const Logo = () => {
   return (
     <Link href={'/'} passHref>
-      <a className="flex">
-        <Image
-          src={'/tontonin.svg'}
-          height={35}
-          width={105}
-          alt={'Logo Tontonin'}
-        />
+      <a className="relative aspect-[3/1] h-9 sm:h-10">
+        <Image src={'/tontonin.svg'} layout={'fill'} alt={'Logo Tontonin'} />
       </a>
     </Link>
   );

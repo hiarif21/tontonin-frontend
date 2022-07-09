@@ -20,8 +20,8 @@ const BrowseTemplate = () => {
     <Layout title={title || 'Browse'}>
       {Boolean(title) && (
         <>
-          <div className="sticky top-0 z-10 grid grid-cols-5 items-center gap-5 bg-white p-5 dark:bg-slate-900">
-            <div className="flex items-center">
+          <div className="sticky top-0 z-10 grid grid-cols-5 items-center gap-5 bg-white p-5 dark:bg-slate-900 lg:static lg:grid-cols-1">
+            <div className="flex items-center lg:hidden">
               <button onClick={router.back}>
                 <Icons
                   icon="back"
@@ -30,7 +30,9 @@ const BrowseTemplate = () => {
                 />
               </button>
             </div>
-            <h1 className="col-span-3 text-center font-bold">{title}</h1>
+            <h1 className="col-span-3 text-center font-bold sm:text-lg lg:text-xl">
+              {title}
+            </h1>
           </div>
           <div className="p-5">
             <MovieList data={data} loadMore={loadMore} totalData={totalData} />

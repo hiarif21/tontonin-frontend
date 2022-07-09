@@ -19,17 +19,32 @@ const Layout = ({ children, title }: LayoutProps) => {
       </Head>
       <header className="sticky top-0 z-10 bg-white dark:bg-slate-900">
         <div
-          className={classNames('', {
-            'flex items-center justify-between p-5 ': router.pathname === '/',
-          })}>
-          {router.pathname === '/' && <Logo />}
+          className={classNames(
+            'max-w-7xl lg:mx-auto lg:flex lg:items-center lg:justify-between lg:p-5',
+            {
+              'flex items-center justify-between p-5': router.pathname === '/',
+            }
+          )}>
+          <div
+            className={classNames('', {
+              flex: router.pathname === '/',
+              'hidden lg:flex': router.pathname !== '/',
+            })}>
+            <Logo />
+          </div>
           <div className="flex items-center">
             <Navigation />
-            {router.pathname === '/' && <ToggleTheme />}
+            <div
+              className={classNames('', {
+                flex: router.pathname === '/',
+                'hidden lg:flex': router.pathname !== '/',
+              })}>
+              <ToggleTheme />
+            </div>
           </div>
         </div>
       </header>
-      <main className="mb-[105px]">{children}</main>
+      <main className="mb-[105px] max-w-7xl lg:mx-auto">{children}</main>
     </div>
   );
 };
