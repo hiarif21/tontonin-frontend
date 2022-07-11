@@ -1,53 +1,48 @@
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import BrowseTemplate from '../../components/templates/BrowseTemplate';
-import { useMovies } from '../../context/movies';
+import { initialFilterMovies, useMovies } from '../../context/movies';
 import { getMovies } from '../../services/api/movies.service';
 
-const Browse = ({ data, totalData }: BrowseProps) => {
+const Browse = () => {
   const router = useRouter();
   const { gr, pr } = router.query;
 
-  const { setFilteredData, setFilteredTotalData, setFilter } = useMovies();
+  const {
+    setFilteredData,
+    setFilteredTotalData,
+    setFilter,
+    filter,
+    filteredData,
+  } = useMovies();
+
   useEffect(() => {
-    if (!gr && !pr) router.push('/');
+    setFilteredData([]);
+    setFilteredTotalData(undefined);
+    setFilter(initialFilterMovies);
 
-    setFilteredData(data);
-    setFilteredTotalData(totalData);
-    setFilter({
-      genres: gr?.toString() || '',
-      persons: pr?.toString() || '',
-    });
+    const setData = async (
+      id: string | undefined,
+      type: 'genres' | 'persons'
+    ) => {
+      const result = await getMovies({ [type]: id });
 
+      if (!result.success) router.push('/');
+
+      setFilteredData(result.data);
+      setFilteredTotalData(result.total_data);
+      setFilter({ [type]: id });
+    };
+
+    if (gr && gr !== filter.genres) {
+      setData(gr.toString(), 'genres');
+    } else if (pr && pr !== filter.persons) {
+      setData(pr.toString(), 'persons');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gr, pr]);
 
   return <BrowseTemplate />;
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { gr, pr } = query;
-
-  if (gr || pr) {
-    const params: MoviesParams = {
-      genres: gr?.toString() || '',
-      persons: pr?.toString() || '',
-    };
-    const result = await getMovies(params);
-    return {
-      props: {
-        data: result.data,
-        totalData: result.total_data,
-      },
-    };
-  }
-  return {
-    props: {
-      data: [],
-      totalData: 0,
-    },
-  };
 };
 
 export default Browse;

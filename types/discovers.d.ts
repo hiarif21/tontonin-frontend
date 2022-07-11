@@ -22,6 +22,15 @@ interface GetDiscoverResponse {
     data: DiscoverData
 }
 
+interface GetMoreDiscoversResponse {
+    success: boolean,
+    message: string,
+    page: number
+    total_page: number
+    total_data: number
+    data: MoviesData[] | []
+}
+
 interface DiscoversParams {
     page?: number
     title?: string
@@ -32,7 +41,7 @@ type TypeMoreDiscovers = "popular" | "new"
 type GetDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined) => Promise<GetDiscoversResponse>
 type GetDiscover = (id: string, params?: DiscoversParams, signal?: AbortSignal | undefined) => Promise<GetDiscoverResponse>
 type LoadMoreDiscovers = () => void
-type GetMoreDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined, type: TypeMoreDiscovers) => Promise<GetDiscoversResponse>
+type GetMoreDiscovers = (params?: DiscoversParams, signal?: AbortSignal | undefined, type: TypeMoreDiscovers) => Promise<GetMoreDiscoversResponse>
 type LoadMoreDiscoversDiscovers = (type: TypeMoreDiscovers) => void
 type LoadMoreDiscover = (id: string) => void
 
@@ -55,8 +64,8 @@ type UseDiscovers = () => {
 }
 
 interface MoreDiscoversData {
-    popular: MoviesData[]
-    new: MoviesData[]
+    popular: MoviesData[] | []
+    new: MoviesData[] | []
 }
 
 interface TotalMoreDiscoversData {

@@ -76,7 +76,7 @@ type UseMovies = () => {
     filteredData: MoviesData[],
     setFilteredData: React.Dispatch<MoviesData[]>
     filteredTotalData: number,
-    setFilteredTotalData: React.Dispatch<number>
+    setFilteredTotalData: React.Dispatch<number | undefined>
     loadMoreFiltered: LoadMoreFilteredMovies
     filter: FilterMovies
     setFilter: React.Dispatch<FilterMovies>,

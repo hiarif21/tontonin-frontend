@@ -17,7 +17,7 @@ const Layout = ({ children, title }: LayoutProps) => {
         <meta name="theme-color" content={isDarkTheme ? '#0F172A' : '#FFF'} />
         <title>{title}</title>
       </Head>
-      <header className="sticky top-0 z-10 bg-white dark:bg-slate-900">
+      <header className="sticky top-0 z-10 border-b border-slate-100 bg-white dark:border-slate-700 dark:bg-slate-900">
         <div
           className={classNames(
             'max-w-7xl lg:mx-auto lg:flex lg:items-center lg:justify-between lg:p-5',

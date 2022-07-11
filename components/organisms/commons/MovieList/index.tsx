@@ -21,7 +21,8 @@ const MovieList = ({ data, totalData, loadMore, title }: MovieListProps) => {
       <div className="flex justify-center">
         <InfiniteScrolling
           loadMore={loadMore}
-          finished={totalData !== 0 && totalData === data.length}
+          dataLength={data.length}
+          totalData={totalData}
           markFinished
         />
       </div>

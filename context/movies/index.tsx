@@ -21,20 +21,16 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
   const [totalData, setTotalData] = useState(0);
 
   const [filteredData, setFilteredData] = useState<MoviesData[]>([]);
-  const [filteredTotalData, setFilteredTotalData] = useState(0);
+  const [filteredTotalData, setFilteredTotalData] = useState<
+    number | undefined
+  >();
 
   const [filter, setFilter] = useState<FilterMovies>(initialFilterMovies);
 
   useEffect(() => {
     const abortController = new AbortController();
 
-    const checkFilter =
-      Boolean(filter.genres) ||
-      Boolean(filter.persons) ||
-      Boolean(filter.title) ||
-      Boolean(filter.watch_options);
-
-    if (checkFilter) {
+    if (Boolean(filter.title)) {
       const signal = abortController.signal;
       loadFilteredData(signal);
     }
@@ -79,7 +75,7 @@ export const MoviesProvider = (props: { children: ReactNode }) => {
   const loadMoreFiltered: LoadMoreFilteredMovies = async () => {
     let count = Math.floor(filteredData.length / 10 + 1);
 
-    if (filteredData.length < filteredTotalData) {
+    if (filteredData.length < filteredTotalData!) {
       const result = await getMovies({
         page: count,
         ...filter,

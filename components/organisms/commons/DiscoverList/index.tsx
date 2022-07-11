@@ -48,7 +48,8 @@ const DiscoverList = ({ data, totalData, loadMore }: DiscoverListProps) => {
       <div className="flex justify-center">
         <InfiniteScrolling
           loadMore={loadMore}
-          finished={totalData !== 0 && totalData === data.length}
+          dataLength={data.length}
+          totalData={totalData}
         />
       </div>
     </div>

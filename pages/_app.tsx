@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import MovieDetails from '../components/molecules/commons/MovieDetails';
 import { DiscoversProvider } from '../context/discovers';
 import { MoviesProvider } from '../context/movies';
 import { ThemeProvider } from '../context/theme';
@@ -16,7 +15,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <MoviesProvider>
         <DiscoversProvider>
           <Component {...pageProps} />
-          <MovieDetails />
         </DiscoversProvider>
       </MoviesProvider>
     </ThemeProvider>

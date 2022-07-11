@@ -19,6 +19,10 @@ interface ModalProps {
     _ref?: RefObject<HTMLElement>;
 }
 
+interface LoadingProps {
+    _ref?: RefObject<HTMLElement>;
+}
+
 // molecules
 
 interface NavigationItemProps {
@@ -34,7 +38,8 @@ interface MovieCardProps {
 
 interface InfiniteScrollingProps {
     loadMore: () => void
-    finished: boolean
+    dataLength: number
+    totalData: number
     markFinished?: boolean
 }
 
@@ -64,33 +69,6 @@ interface GenresTemplate {
 
 // pages
 
-interface HomeProps {
-    dataDiscovers: DiscoverData[]
-    totalDataDiscovers: number
-    dataMovies: MoviesData[]
-    totalDataMovies: number
-}
-
-interface PopularProps {
-    data: MoviesData[]
-    totalData: number
-}
-
-interface NewProps {
-    data: MoviesData[]
-    totalData: number
-}
-
 interface GenresProps {
     data: GenreData[]
-}
-
-interface DiscoversDetailProps {
-    data: DiscoverData
-    totalData: number
-}
-
-interface BrowseProps {
-    data: MoviesData[]
-    totalData: number
 }

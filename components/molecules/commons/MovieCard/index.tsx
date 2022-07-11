@@ -23,7 +23,7 @@ const MovieCard = ({
   }, [router.query, data._id]);
 
   const handleClick = () => {
-    router.push(url, undefined, { scroll: false });
+    router.push(url, undefined, { shallow: true, scroll: false });
   };
 
   return (

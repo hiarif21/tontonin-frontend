@@ -15,7 +15,7 @@ const initialTotalMoreDiscovers: TotalMoreDiscoversData = {
   new: 0,
 };
 
-const initialSingleData: DiscoverData = {
+export const initialSingleDataDiscover: DiscoverData = {
   _id: '',
   title: '',
   movies: [],
@@ -27,7 +27,9 @@ export const DiscoversProvider = (props: { children: ReactNode }) => {
   const [data, setData] = useState<DiscoverData[]>([]);
   const [totalData, setTotalData] = useState(0);
 
-  const [singleData, setSingleData] = useState<DiscoverData>(initialSingleData);
+  const [singleData, setSingleData] = useState<DiscoverData>(
+    initialSingleDataDiscover
+  );
   const [totalSingleData, setTotalSingleData] = useState(0);
 
   const [moreDiscoversData, setMoreDiscoversData] =

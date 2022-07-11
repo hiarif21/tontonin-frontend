@@ -1,5 +1,7 @@
 import { useDiscovers } from '../../../context/discovers';
+import Loading from '../../atoms/Loading';
 import Layout from '../../Layout';
+import MovieDetails from '../../molecules/commons/MovieDetails';
 import MovieList from '../../organisms/commons/MovieList';
 
 const PopularTemplate = () => {
@@ -18,8 +20,15 @@ const PopularTemplate = () => {
         </h1>
       </div>
       <div className="p-5 pt-0 lg:p-5">
-        <MovieList data={data} loadMore={loadMore} totalData={totalData} />
+        {totalData === 0 ? (
+          <div className="flex w-full justify-center">
+            <Loading />
+          </div>
+        ) : (
+          <MovieList data={data} loadMore={loadMore} totalData={totalData} />
+        )}
       </div>
+      <MovieDetails />
     </Layout>
   );
 };

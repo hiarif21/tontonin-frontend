@@ -1,46 +1,37 @@
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import DiscoversDetailTemplate from '../../components/templates/DiscoversDetailTemplate';
-import { useDiscovers } from '../../context/discovers';
+import {
+  initialSingleDataDiscover,
+  useDiscovers,
+} from '../../context/discovers';
 import { getDiscover } from '../../services/api/discovers.service';
 
-const DiscoversDetail = ({ data, totalData }: DiscoversDetailProps) => {
+const DiscoversDetail = () => {
   const router = useRouter();
+  const { dd } = router.query;
 
   const { setSingleData, setTotalSingleData } = useDiscovers();
-  useEffect(() => {
-    setSingleData(data);
-    setTotalSingleData(totalData);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
-    if (!router.query.dd) router.push('/');
+    setSingleData(initialSingleDataDiscover);
+    setTotalSingleData(0);
+
+    if (dd) {
+      (async () => {
+        const result = await getDiscover(dd.toString());
+
+        if (!result.success) router.push('/');
+
+        setSingleData(result.data);
+        setTotalSingleData(result.total_movies);
+      })();
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.dd]);
+  }, [dd]);
 
   return <DiscoversDetailTemplate />;
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  if (query.dd) {
-    const result = await getDiscover(query.dd.toString());
-    return {
-      props: {
-        data: result.data,
-        totalData: result.total_movies,
-      },
-    };
-  }
-  return {
-    props: {
-      data: [],
-      totalData: 0,
-    },
-  };
 };
 
 export default DiscoversDetail;
