@@ -139,14 +139,16 @@ const MovieDetails = () => {
                         <span className="font-bold">{value}: </span>
                         {persons[value].map(
                           (val: { _id: string; name: string }, idx: any) => {
-                            const paramsBrowse = new URLSearchParams({
-                              pr: val._id,
-                              tl: val.name,
-                            });
                             return (
                               <button
                                 onClick={() =>
-                                  router.push('browse?' + paramsBrowse)
+                                  router.push({
+                                    pathname: 'browse',
+                                    query: {
+                                      pr: val._id,
+                                      tl: val.name,
+                                    },
+                                  })
                                 }
                                 key={val._id + idx}
                                 className={
@@ -163,13 +165,17 @@ const MovieDetails = () => {
                   <div>
                     <span className="font-bold">Genres: </span>
                     {data.genres.map((val, idx) => {
-                      const paramsBrowse = new URLSearchParams({
-                        gr: val._id,
-                        tl: val.name,
-                      });
                       return (
                         <button
-                          onClick={() => router.push('browse?' + paramsBrowse)}
+                          onClick={() =>
+                            router.push({
+                              pathname: 'browse',
+                              query: {
+                                gr: val._id,
+                                tl: val.name,
+                              },
+                            })
+                          }
                           key={val._id + idx}
                           className={
                             "ml-1 after:content-[','] last:after:content-[''] hover:underline"

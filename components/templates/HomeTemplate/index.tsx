@@ -3,6 +3,7 @@ import { useMovies } from '../../../context/movies';
 import Loading from '../../atoms/Loading';
 import Layout from '../../Layout';
 import MovieDetails from '../../molecules/commons/MovieDetails';
+import Notice from '../../molecules/commons/notice';
 import DiscoverList from '../../organisms/commons/DiscoverList';
 import MovieList from '../../organisms/commons/MovieList';
 
@@ -12,6 +13,7 @@ const HomeTemplate = () => {
 
   return (
     <Layout title="Home">
+      <Notice />
       <div className="p-5">
         {Discovers.data.length === 0 && Movies.data.length === 0 ? (
           <div className="flex w-full justify-center">
